@@ -4,7 +4,7 @@ import BotCard from '../components/BotCard'
 class BotCollection extends Component {
   
   genBots = () => {
-    return this.props.bots.map(bot => <BotCard bot={bot} enlist={this.props.enlist} />)
+    return this.props.bots.map(bot => <BotCard bot={bot} enlist={this.props.enlist} deactivateBot={this.props.deactivateBot}/>)
   }
 
 

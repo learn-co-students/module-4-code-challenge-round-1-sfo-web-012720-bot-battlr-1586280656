@@ -23,16 +23,27 @@ class BotsPage extends Component {
   }
 
   deEnlist = (desertBot) => {
-    const leftBots = this.state.bots.filter(bot => bot !== desertBot)
+    const leftBots = this.state.armyBots.filter(bot => bot !== desertBot)
     this.setState({
       armyBots: leftBots
     })
   }
 
+  deactivateBot = (bot) => {
+    console.log('are we here yet')
+    fetch(`http://localhost:6001/bots/${bot.id}`, {
+      method: 'DELETE'
+    })
+    const stillActiveBots = this.state.bots.filter(activeBot => activeBot !== bot)
+    this.setState({
+      bots: stillActiveBots
+    })
+  }
+
   render() {
     return <div>
-      <YourBotArmy armyBots={this.state.armyBots} enlist={this.enlist} deEnlist={this.deEnlist}/>
-      <BotCollection enlist={this.enlist} bots={this.state.bots} />
+      <YourBotArmy deEnlist={this.deEnlist} armyBots={this.state.armyBots} deactivateBot={this.deactivateBot} />
+      <BotCollection enlist={this.enlist} bots={this.state.bots} deactivateBot={this.deactivateBot}/>
     </div>;
   }
 }
