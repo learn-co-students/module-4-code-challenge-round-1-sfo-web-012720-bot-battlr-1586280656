@@ -6,7 +6,8 @@ class BotCollection extends Component {
   //your code here
 
   renderBot = () => {
-    return this.props.char.map(x => <BotCard botCharacter={x} favBotChar = {this.props.favBotChar}/>)
+    console.log(this.props)
+    return this.props.bots.map(bot => <BotCard bot={bot}/>)
   }
 
   render() {

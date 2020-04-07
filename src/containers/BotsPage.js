@@ -36,8 +36,8 @@ botArmy = (char) => {
     console.log(this.state)
     return (
       <div>
-     <YourBotArmy fav= {this.state.botArmy} favBotChar={this.botCharacter}/>
-     <BotCollection char={this.state.botCharacter} favBotChar={this.botCharacter}/>
+     {/* <YourBotArmy fav= {this.state.botArmy} bots={this.botCharacter}/> */}
+     <BotCollection char={this.state.botCharacter} bots={this.state.botCharacter}/>
 
       
       </div>
