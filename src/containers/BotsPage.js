@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import BotCollection from '../containers/BotCollection'
+import YourBotArmy from '../containers/YourBotArmy'
 
   const baseURL = "http://localhost:6001/bots"
 
@@ -11,6 +12,7 @@ class BotsPage extends Component {
 
   state = {
     bots: [],
+    armyBots: [],
   }
 
   componentDidMount() {
@@ -19,10 +21,26 @@ class BotsPage extends Component {
     .then(botData => this.setState({bots: botData}))
   }
 
+
+  addToArmy = (bot) => {
+    if (!this.state.armyBots.includes(bot)) {
+      this.setState(prevState => (
+        {armyBots: [...prevState.armyBots, bot]}))
+    }
+  }
+
+
+  removeFromArmy = (bot) => {
+    const newBots = this.state.armyBots.filter(b => b !== bot)
+    this.setState({armyBots: newBots})
+  }
+
   render() {
-    const {bots} = this.state
+    const {bots, armyBots} = this.state
     return (
-      <div><BotCollection bots={bots}/>
+      <div>
+        <YourBotArmy bots={armyBots} handleClick={this.removeFromArmy}/>
+        <BotCollection bots={bots} handleClick={this.addToArmy}/>
       </div>
     )
   }
