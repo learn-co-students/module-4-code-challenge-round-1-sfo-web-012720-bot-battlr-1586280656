@@ -5,7 +5,8 @@ import BotCard from '../components/BotCard.js'
 class BotCollection extends Component {
   mapOverBots = (props) => {
     return this.props.allBots.map(bot => 
-      <BotCard bot={bot} handleClick={this.props.addBotToArmy}/> )
+      <BotCard bot={bot} handleClick={this.props.addBotToArmy}
+      deleteBot={this.props.deleteBot}/> )
   }
 
   render() {

@@ -38,13 +38,36 @@ class BotsPage extends Component {
       })
 
   }
+
+  deleteBot = (bot) => {
+    console.log("you clicked the red x")
+    fetch(`http://localhost:6001/bots/${bot.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      }
+    }).then((resp) => resp.json())
+    .then((data) =>  
+     {let newArray = this.state.allBots.filter(robot =>
+      bot !== robot)
+      this.setState({
+        allBots: newArray
+      })
+    }
+
+
+    )
+    
+
+  }
   //start here with your code for step one
 
   render() {
     return (
     <div>
-    <YourBotArmy armyBots={this.state.armyBots} removeABot={this.removeABot} />
-    <BotCollection allBots={this.state.allBots} addBotToArmy={this.addBotToArmy}/> 
+    <YourBotArmy armyBots={this.state.armyBots} removeABot={this.removeABot} deleteBot={this.deleteBot} />
+    <BotCollection allBots={this.state.allBots} addBotToArmy={this.addBotToArmy} deleteBot={this.deleteBot}/> 
     
     
     </div>

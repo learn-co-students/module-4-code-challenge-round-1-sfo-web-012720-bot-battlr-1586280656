@@ -4,7 +4,8 @@ import BotCard from '../components/BotCard.js'
 class YourBotArmy extends Component {
   mapOverBots = (props) => {
     return this.props.armyBots.map(bot => 
-      <BotCard bot={bot} handleClick={this.props.removeABot}/> )
+      <BotCard bot={bot} handleClick={this.props.removeABot}
+      deleteBot={this.props.deleteBot}/> )
   }
   //your bot army code here...
 

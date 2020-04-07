@@ -47,7 +47,7 @@ const BotCard = props => {
             <div className="ui center aligned segment basic">
               <button
                 className="ui mini red button"
-                onClick={() => {}}
+                onClick={() => {props.deleteBot(props.bot)}}
                 
               >
                 x
