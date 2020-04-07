@@ -23,7 +23,7 @@ class BotsPage extends Component {
 
 
   addToArmy = (bot) => {
-    if (!this.state.armyBots.includes(bot)) {
+    if (!this.state.armyBots.includes(bot) && !this.deleteBot) {
       this.setState(prevState => (
         {armyBots: [...prevState.armyBots, bot]}))
     }
@@ -35,12 +35,20 @@ class BotsPage extends Component {
     this.setState({armyBots: newBots})
   }
 
+  deleteBot = (bot) => {
+    fetch(`${baseURL}/${bot.id}`, {
+      method: 'DELETE'
+    })
+    const botsAfterDelete = this.state.bots.filter(b => b !== bot)
+    this.setState({bots: botsAfterDelete})
+  }
+
   render() {
     const {bots, armyBots} = this.state
     return (
       <div>
-        <YourBotArmy bots={armyBots} handleClick={this.removeFromArmy}/>
-        <BotCollection bots={bots} handleClick={this.addToArmy}/>
+        <YourBotArmy bots={armyBots} handleClick={this.removeFromArmy} handleDeleteButton={this.deleteBot}/>
+        <BotCollection bots={bots} handleClick={this.addToArmy} handleDeleteButton={this.deleteBot}/>
       </div>
     )
   }
